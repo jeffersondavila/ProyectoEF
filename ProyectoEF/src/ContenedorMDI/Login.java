@@ -123,11 +123,9 @@ public class Login extends javax.swing.JFrame {
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
 
-        if (frmLADMIN == null) {//SI SELECCIONA ESTE BOTON LO REEDIRIGIMOS A OTRA FORMA
-
-            frmLADMIN = new Login();
-            frmLADMIN.setVisible(true);
-        }
+        Registro registro = new Registro();
+        registro.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_btnRegistroActionPerformed
 
