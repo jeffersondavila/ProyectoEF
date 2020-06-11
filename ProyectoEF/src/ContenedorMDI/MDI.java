@@ -15,7 +15,15 @@ public class MDI extends javax.swing.JFrame {
 
     Usuarios mod;
     
-    
+    private MantenimientoAlumnos formMantenimientoAlumno;
+    private MantenimientoMaestros formMantenimientoMaestro;
+    private MantenimientoFacultades formMantenimientoFacultad;
+    private MantenimientoCarreras formMantenimientoCarrera;
+    private MantenimientoCursos formMantenimientoCurso;
+    private MantenimientoSecciones formMantenimientoSeccion;
+    private MantenimientoSedes formMantenimientoSede;
+    private MantenimientoAulas formMantenimientoAula;
+    private MantenimientoJornadas formMantenimientoJornada;
     
 
     public MDI() {
@@ -261,40 +269,48 @@ public class MDI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        
-        
+        formMantenimientoAlumno = new MantenimientoAlumnos();
+        jDesktopPane1.add(formMantenimientoAlumno);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+        formMantenimientoMaestro = new MantenimientoMaestros();
+        jDesktopPane1.add(formMantenimientoMaestro);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        
+        formMantenimientoFacultad = new MantenimientoFacultades();
+        jDesktopPane1.add(formMantenimientoFacultad);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        
+        formMantenimientoCarrera = new MantenimientoCarreras();
+        jDesktopPane1.add(formMantenimientoCarrera);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        
+        formMantenimientoCurso = new MantenimientoCursos();
+        jDesktopPane1.add(formMantenimientoCurso);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-       
+        formMantenimientoSeccion = new MantenimientoSecciones();
+        jDesktopPane1.add(formMantenimientoSeccion);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        
+        formMantenimientoSede = new MantenimientoSedes();
+        jDesktopPane1.add(formMantenimientoSede);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        
+        formMantenimientoAula = new MantenimientoAulas();
+        jDesktopPane1.add(formMantenimientoAula);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        
+        formMantenimientoJornada = new MantenimientoJornadas();
+        jDesktopPane1.add(formMantenimientoJornada);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     public static void main(String args[]) {
