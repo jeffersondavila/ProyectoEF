@@ -24,6 +24,8 @@ public class MDI extends javax.swing.JFrame {
     private MantenimientoSedes formMantenimientoSede;
     private MantenimientoAulas formMantenimientoAula;
     private MantenimientoJornadas formMantenimientoJornada;
+    private Asignacion_cursos_alumnos formAsignacionAlumno;
+    private Asignacion_cursos_maestros formAsignacionMaestro;
     
 
     public MDI() {
@@ -260,11 +262,13 @@ public class MDI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        
+        formAsignacionAlumno = new Asignacion_cursos_alumnos();
+        jDesktopPane1.add(formAsignacionAlumno);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        
+        formAsignacionMaestro = new Asignacion_cursos_maestros();
+        jDesktopPane1.add(formAsignacionMaestro);
          
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
