@@ -18,8 +18,13 @@ import javax.swing.table.DefaultTableModel;
 public class MantenimientoCursos extends javax.swing.JInternalFrame {
     String cod;
     
+    String BD = "jdbc:mysql://localhost:3307/siu";
+    String Usuario = "root";
+    String Clave = "";
+    
     public MantenimientoCursos() {
         initComponents();
+        cbx_facultad();
     }
 
     /**
@@ -29,7 +34,27 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
      */
     @SuppressWarnings("unchecked")
     
-    
+    public void cbx_facultad() {
+        //Codigo que permite consultar registros en la base de datos
+        try {
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pst = cn.prepareStatement("select nombre_facultad from facultades");
+
+            ResultSet rs = pst.executeQuery();
+
+            //llenar combobox para el comentaario
+            cbx_facultad.addItem("Facultad");
+
+            while (rs.next()) {
+                cbx_facultad.addItem(rs.getString("nombre_facultad"));
+            }
+
+            rs.close();
+
+        } catch (Exception e) {
+
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -43,49 +68,52 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         btnModificar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         txtbuscar = new javax.swing.JTextField();
-        btnBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        ESTADO = new javax.swing.JLabel();
         Label1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        cbx_facultad = new javax.swing.JComboBox<String>();
+        lbl_facultad = new javax.swing.JLabel();
         btnLimpiar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Registro de Cursos");
         setVisible(true);
 
-        jLabel7.setText("Estatus Curso:");
+        jLabel7.setText("Estatus Carrera:");
 
-        jLabel1.setText("Codigo Curso:");
+        jLabel1.setText("Codigo Carrera:");
 
-        jLabel2.setText("Nombre Curso:");
+        jLabel2.setText("Nombre Carrera:");
 
-        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardarp.png"))); // NOI18N
+        btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);
             }
         });
 
-        btnModificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar.png"))); // NOI18N
+        btnModificar.setText("Modificar");
         btnModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnModificarActionPerformed(evt);
             }
         });
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar.png"))); // NOI18N
+        btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
             }
         });
 
-        btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/busquedap.png"))); // NOI18N
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -94,7 +122,22 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
 
         jLabel8.setText("Codigo:");
 
-        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/limpiar.png"))); // NOI18N
+        jLabel3.setText("Codigo Facultad:");
+
+        cbx_facultad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cbx_facultadMouseClicked(evt);
+            }
+        });
+        cbx_facultad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbx_facultadActionPerformed(evt);
+            }
+        });
+
+        lbl_facultad.setText("Codigo");
+
+        btnLimpiar.setText("Limpiar");
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
@@ -105,60 +148,67 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(102, 102, 102))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(btnRegistrar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnModificar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnEliminar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnLimpiar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(153, 153, 153)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel7))
+                            .addComponent(Label1)
+                            .addComponent(ESTADO)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel7)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(28, 28, 28)
                                 .addComponent(jLabel8)))
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtestatus, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
                             .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbx_facultad, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbl_facultad))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
-                        .addComponent(Label1)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGap(120, 120, 120)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnRegistrar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnModificar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminar)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnLimpiar)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel5)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel5)
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
-                    .addComponent(btnBuscar))
-                .addGap(14, 14, 14)
+                            .addComponent(jButton1)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel8)))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -166,20 +216,26 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(cbx_facultad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_facultad))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtestatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnRegistrar)
-                        .addComponent(btnModificar)
-                        .addComponent(btnEliminar))
-                    .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(14, 14, 14)
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnRegistrar)
+                    .addComponent(btnModificar)
+                    .addComponent(btnEliminar)
+                    .addComponent(btnLimpiar))
+                .addGap(50, 50, 50)
+                .addComponent(ESTADO)
+                .addGap(18, 18, 18)
                 .addComponent(Label1)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -189,18 +245,21 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
 
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3307/siu", "root", "");
-            PreparedStatement pst = cn.prepareStatement("insert into cursos values(?,?,?)");
+            PreparedStatement pst = cn.prepareStatement("insert into carreras values(?,?,?,?)");
 
             pst.setString(1, txtcodigo.getText().trim());
             pst.setString(2, txtnombre.getText().trim());
-            pst.setString(3, txtestatus.getText().trim());
+            pst.setString(3, lbl_facultad.getText().trim());
+            pst.setString(4, txtestatus.getText().trim());
 
             pst.executeUpdate();
 
             txtcodigo.setText("");
             txtnombre.setText("");
+            cbx_facultad.setSelectedIndex(0);
             txtestatus.setText("");
-            Label1.setText("Curso registrada");
+            lbl_facultad.setText("");
+            Label1.setText("Carrera registrada");
 
         } catch (Exception e) {
             System.out.print(e.getMessage());
@@ -214,10 +273,11 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
             String ID = txtbuscar.getText().trim();
 
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3307/siu", "root", "");
-            PreparedStatement pst = cn.prepareStatement("update cursos set codigo_curso = ?, nombre_curso = ?, estatus_curso= ? where codigo_curso=?");
+            PreparedStatement pst = cn.prepareStatement("update carreras set codigo_carreras = ?, nombre_carrera = ?, codigo_facultad = ?,estatus_carrera= ? where codigo_carrera=?");
 
             pst.setString(1, txtcodigo.getText().trim());
             pst.setString(2, txtnombre.getText().trim());
+            pst.setString(3, lbl_facultad.getText().trim());
             pst.setString(4, txtestatus.getText().trim());
             pst.setString(5, cod.trim());
 
@@ -225,7 +285,9 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
 
             txtcodigo.setText("");
             txtnombre.setText("");
+            cbx_facultad.setSelectedIndex(0);
             txtestatus.setText("");
+            lbl_facultad.setText("Codigo");
             Label1.setText("Registro Modificado.");
 
         } catch (Exception e) {
@@ -238,14 +300,16 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
 
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3307/siu", "root", "");
-            PreparedStatement pst = cn.prepareStatement("delete from cursos where codigo_curso = ?");
+            PreparedStatement pst = cn.prepareStatement("delete from carreras where codigo_carrera = ?");
 
             pst.setString(1, txtbuscar.getText().trim());
             pst.executeUpdate();
 
             txtcodigo.setText("");
             txtnombre.setText("");
+            lbl_facultad.setText("");
             txtestatus.setText("");
+            lbl_facultad.setText("");
             txtbuscar.setText("");
             Label1.setText("Registro eliminado.");
 
@@ -254,22 +318,23 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3307/siu", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from cursos where codigo_curso = ?");
+            PreparedStatement pst = cn.prepareStatement("select * from carreras where codigo_carrera = ?");
             pst.setString(1, txtbuscar.getText().trim());
 
             ResultSet rs = pst.executeQuery();
 
             if (rs.next()) {
-                txtcodigo.setText(rs.getString("codigo_curso"));
-                txtnombre.setText(rs.getString("nombre_curso"));
-                txtestatus.setText(rs.getString("estatus_curso"));
+                txtcodigo.setText(rs.getString("codigo_carrera"));
+                txtnombre.setText(rs.getString("nombre_carrera"));
+                lbl_facultad.setText(rs.getString("codigo_facultad"));
+                txtestatus.setText(rs.getString("estatus_carrera"));
                 cod = txtbuscar.getText();
             } else {
-                JOptionPane.showMessageDialog(null, "Curso no registrado.");
+                JOptionPane.showMessageDialog(null, "Carrera no registrada.");
                 txtbuscar.setText("");
             }
 
@@ -277,29 +342,62 @@ public class MantenimientoCursos extends javax.swing.JInternalFrame {
             System.out.print(e.getMessage());
         }
         
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbx_facultadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cbx_facultadMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbx_facultadMouseClicked
+
+    private void cbx_facultadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx_facultadActionPerformed
+        
+        try {
+            Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
+            PreparedStatement pst = cn.prepareStatement("select codigo_facultad from facultades where nombre_facultad=?");
+            pst.setString(1, cbx_facultad.getSelectedItem().toString());
+
+            ResultSet rs = pst.executeQuery();
+
+            //llenar combobox para el comentaario
+            //cbx_facultad.addItem("Facultad");
+            if (rs.next()) {
+                lbl_facultad.setText(rs.getString("codigo_facultad"));
+            }
+
+            //rs.close();
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_cbx_facultadActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        
         txtcodigo.setText("");
         txtnombre.setText("");
+        cbx_facultad.setSelectedIndex(0);
         txtestatus.setText("");
+        lbl_facultad.setText("");
         txtbuscar.setText("");
         Label1.setText("");
+        
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ESTADO;
     private javax.swing.JLabel Label1;
-    private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JComboBox<String> cbx_facultad;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lbl_facultad;
     private javax.swing.JTextField txtbuscar;
     private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtestatus;

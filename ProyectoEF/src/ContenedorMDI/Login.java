@@ -156,7 +156,6 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar sus datos");
             limpiar();
         }
-        this.dispose();
     }//GEN-LAST:event_btnEntrarActionPerformed
     
     private void limpiar() {

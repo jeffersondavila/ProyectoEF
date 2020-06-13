@@ -279,7 +279,7 @@ public class Asignacion_cursos_maestros extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
-        setTitle("Asignación de Cursos Maestros");
+        setTitle("Asignación de Cursos Alumnos");
         setVisible(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -599,7 +599,7 @@ public class Asignacion_cursos_maestros extends javax.swing.JInternalFrame {
             String ID = lbl_carrera.getText().trim();
 
             Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
-            PreparedStatement pst = cn.prepareStatement("update asignacioncursosmastros set codigo_carrera= ?, codigo_sede=?, codigo_jornada=?, codigo_seccion=?, codigo_aula=?, codigo_curso=?, codigo_maestro=? where codigo_maestro = " + ID);
+            PreparedStatement pst = cn.prepareStatement("update asignacioncursosmastros set codigo_carrera= ?, codigo_sede=?, codigo_jornada=?, codigo_seccion=?, codigo_aula=?, codigo_curso=?, codigo_maestro=? where codigo_carrera = " + ID);
 
             pst.setString(1, lbl_carrera.getText().trim());
             pst.setString(2, lbl_sede.getText().trim());
@@ -863,7 +863,7 @@ public class Asignacion_cursos_maestros extends javax.swing.JInternalFrame {
 
         try {
             Connection cn = DriverManager.getConnection(BD, Usuario, Clave);
-            PreparedStatement pst = cn.prepareStatement("select nombre_maestro from maestros where codigo_maestro=?;");
+            PreparedStatement pst = cn.prepareStatement("select nombre_maestro from alumnos where codigo_maestro=?;");
             pst.setString(1, lbl_maestro.getText());
             ResultSet rs = pst.executeQuery();
 
